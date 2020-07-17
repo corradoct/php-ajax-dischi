@@ -21,38 +21,41 @@ img {
   height: 100vh;
   background-color: #1e2d3b;
 }
-.wrapper header {
+
+header {
   background-color: #2e3a46;
   text-align: center;
   color: #fff;
   padding: 20px 0;
 }
-.wrapper main {
+
+main {
   padding: 20px 0;
 }
-.wrapper main .wrapperMain {
+main .wrapperMain {
   width: 70%;
   margin: 0 auto;
 }
-.wrapper main .wrapperMain .discList {
+
+.discList {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   text-align: center;
 }
-.wrapper main .wrapperMain .discList li {
+.discList li {
   flex-basis: calc(100% / 3);
   padding: 20px;
   cursor: pointer;
 }
-.wrapper main .wrapperMain .discList li .cd {
+.discList li .cd {
   padding: 15px;
   background-color: #2e3a46;
 }
-.wrapper main .wrapperMain .discList li .cd h4 {
+.discList li .cd h4 {
   padding: 10px 0;
 }
-.wrapper main .wrapperMain .discList li .cd span {
+.discList li .cd span {
   display: block;
   padding: 10px 0;
 }

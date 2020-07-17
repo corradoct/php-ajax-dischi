@@ -1,0 +1,26 @@
+.discList {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+
+  li {
+    flex-basis: calc(100% / 3);
+    padding: 20px;
+    cursor: pointer;
+
+    .cd {
+      padding: 15px;
+      background-color: #2e3a46;
+
+      h4 {
+        padding: 10px 0;
+      }
+
+      span {
+        display: block;
+        padding: 10px 0;
+      }
+    }
+  }
+}
