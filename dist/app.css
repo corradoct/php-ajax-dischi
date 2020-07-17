@@ -41,16 +41,18 @@ img {
   text-align: center;
 }
 .wrapper main .wrapperMain .discList li {
-  flex-basis: calc(100% / 4);
-  background-color: #2e3a46;
-  padding: 20px 0;
-  margin: 5px;
+  flex-basis: calc(100% / 3);
+  padding: 20px;
   cursor: pointer;
 }
-.wrapper main .wrapperMain .discList li h4 {
+.wrapper main .wrapperMain .discList li .cd {
+  padding: 15px;
+  background-color: #2e3a46;
+}
+.wrapper main .wrapperMain .discList li .cd h4 {
   padding: 10px 0;
 }
-.wrapper main .wrapperMain .discList li span {
+.wrapper main .wrapperMain .discList li .cd span {
   display: block;
   padding: 10px 0;
 }
