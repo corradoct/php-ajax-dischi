@@ -22,6 +22,14 @@
         </div>
         <!-- Fine logo -->
 
+        <!-- Selezione artista -->
+        <div class="selezione">
+          <select class="selectAuthor" name="">
+            <option value="all">Seleziona artista</option>
+          </select>
+        </div>
+        <!-- Fine selezione artista -->
+
       </header>
       <!-- Fine header -->
 
@@ -66,6 +74,12 @@
 
       </li>
       <!-- Fine disco singolo -->
+
+    </script>
+
+    <script id="select-template" type="text/x-handlebars-template">
+
+      <option value="{{author}}">{{author}}</option>
 
     </script>
     <!-- Fine Handlebars -->

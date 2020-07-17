@@ -1,6 +1,8 @@
 header {
-  background-color: #2e3a46;
+  background-color: $primaryColor;
   text-align: center;
-  color: #fff;
   padding: 20px 0;
+  @include displayFlex;
+  justify-content: space-around;
+  align-items: center;
 }

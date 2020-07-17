@@ -1,6 +1,5 @@
 .discList {
-  display: flex;
-  justify-content: center;
+  @include displayFlex;
   flex-wrap: wrap;
   text-align: center;
 
@@ -11,7 +10,7 @@
 
     .cd {
       padding: 15px;
-      background-color: #2e3a46;
+      background-color: $primaryColor;
 
       h4 {
         padding: 10px 0;
