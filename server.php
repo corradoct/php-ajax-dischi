@@ -1,5 +1,3 @@
-<!-- Creo l'endpoint per la chiamata ajax all'API -->
-
 <?php
 
 // Includo il database
