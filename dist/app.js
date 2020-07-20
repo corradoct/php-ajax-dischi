@@ -16095,50 +16095,48 @@ var Handlebars = __webpack_require__(/*! handlebars */ "./node_modules/handlebar
 
 
 $(document).ready(function () {
-  // Creo la chiamata ajax
+  // Creo la variabile dell'URL base
+  var urlBase = window.location.protocol + '//' + window.location.host; // Invoco la funzione per stampare  dischi senza un filtro
+
+  printCds(urlBase, ''); // Invoco la funzione per stampare le opzioni della select
+
+  printSelect(urlBase); // Recupero la scelta dell'utente
+
+  $('.selectAuthor').on('change', function () {
+    var selectedAuthor = $(this).val(); // Invoco la funzione per stampare la lista dei dischi filtrati dalla scelta dell'utente
+
+    printCds(urlBase, selectedAuthor);
+  });
+}); // ****************************  FUNZIONI  ************************  //
+// Funzione che effettua una chiamata Ajax ad un API
+// Argomenti:
+//          => authorFilter: Filtro scelto dall'utente
+// Non ritorna nulla
+
+function printCds(url, authorFilter) {
+  // Resetto la lista dei dischi
+  $('.discList').html(''); // Effettuo la chiamata Ajax
+
   $.ajax({
-    url: 'http://localhost:8888/php-ajax-dischi/server.php',
+    url: url + '/php-ajax-dischi/server.php',
     method: 'GET',
+    data: {
+      author: authorFilter
+    },
     success: function success(dataResponse) {
       // Invoco la funzione per stampare i risultati
-      printList(dataResponse); // Invoco la funzione per stampare gli artisti nella select
-
-      printSelect(dataResponse);
+      printList(dataResponse);
     },
     error: function error() {
       // Stampo un messaggio di errore
       $('.discList').append('Si sono verificati dei problemi, riprova più tardi');
     }
   });
-  $('.selectAuthor').on('change', function () {
-    var selectedAuthor = $(this).val();
-    console.log(selectedAuthor);
-
-    if (selectedAuthor === 'all') {
-      $('.discList').children('li').show();
-    } else {
-      $.ajax({
-        url: 'http://localhost:8888/php-ajax-dischi/server.php',
-        method: 'GET',
-        data: {},
-        success: function success(dataResponse) {
-          console.log(dataResponse);
-          $('.discList').html(''); // Invoco la funzione per stampare i risultati
-
-          printList(dataResponse);
-        },
-        error: function error() {
-          // Stampo un messaggio di errore
-          $('.discList').append('Non ho trovato risultati');
-        }
-      });
-    }
-  });
-}); // ****************************  FUNZIONI  ************************  //
-// Funzione per stampare i risultati tramite Handlebars
+} // Funzione per stampare i risultati tramite Handlebars
 // Argomenti:
 //          => results: Array contenente i risultati da stampare
 // Non ritorna nulla
+
 
 function printList(results) {
   // Se sono presenti risultati li stampo
@@ -16155,27 +16153,37 @@ function printList(results) {
     //Altrimenti stampo un messaggio di errore
     $('.discList').append('Non ho trovato risultati');
   }
-} // Funzione per stampare gli artisti nella select tramite Handlebars
-// Argomenti:
-//          => results: Array contenente i risultati da stampare
+} // Funzione che effettua una chiamata Ajax ad un API e stampa gli artisti nella select tramite Handlebars
 // Non ritorna nulla
 
 
-function printSelect(results) {
-  // Se sono presenti risultati li stampo
-  if (results != null) {
-    var source = $('#select-template').html();
-    var template = Handlebars.compile(source);
+function printSelect(url) {
+  $.ajax({
+    url: url + '/php-ajax-dischi/server.php',
+    method: 'GET',
+    data: {
+      'author-list': 'true'
+    },
+    success: function success(dataResponse) {
+      var source = $('#select-template').html();
+      var template = Handlebars.compile(source);
 
-    for (var i in results) {
-      $thisDisc = results[i];
-      var html = template($thisDisc);
-      $('.selectAuthor').append(html);
+      if (dataResponse != null) {
+        for (var i in dataResponse) {
+          var thisAuthor = dataResponse[i];
+          var context = {
+            author: thisAuthor
+          };
+          var html = template(context);
+          $('.selectAuthor').append(html);
+        }
+      }
+    },
+    error: function error() {
+      // Stampo un messaggio di errore
+      $('.discList').append('Non ho trovato risultati');
     }
-  } else {
-    //Altrimenti stampo un messaggio di errore
-    $('.selectAuthor').append('Non ho trovato risultati');
-  }
+  });
 }
 
 /***/ }),

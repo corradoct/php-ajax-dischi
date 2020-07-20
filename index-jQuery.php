@@ -25,7 +25,7 @@
         <!-- Selezione artista -->
         <div class="selezione">
           <select class="selectAuthor" name="">
-            <option value="all">Seleziona artista</option>
+            <option value="">All</option>
           </select>
         </div>
         <!-- Fine selezione artista -->
